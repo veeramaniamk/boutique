@@ -21,7 +21,7 @@ function chagneProfileImage(req, res) {
  
     const upload = multer({ storage });
     
-        upload.single("profile")(req,res, (err) => {
+        upload.single("profile")(req, res, (err) => {
 
           const user_id = req.body.user_id;
 
@@ -57,10 +57,11 @@ function modifyUserInfo(req, res) {
 
     const query = `UPDATE signup SET name=?,phone=?,email=?,gender=?,update_on=? WHERE id=?`;
     mysql.query(query,[name, phone, email, gender, updated_on, user_id],(err,result) => {
-
-        if(err) {
-          return res.status(500).send({ error: 'Error inserting data into database',err });
-        }
+      if(err) {
+        const error = { message:'Sql Error', error:err };
+        console.log(error);
+        return;
+      }
 
         return res.status(200).send({nstatus:200, message:'Updated successfully' });
 
@@ -83,8 +84,10 @@ async function setPassword(req, res) {
     mysql.query(query, [ password, user_id ], (err, result) => {
 
       if(err) {
-        return res.status(500).send({ error: 'Error inserting data into database',err });
-      }
+        const error = { message:'Sql Error', error:err };
+        console.log(error);
+        return;
+     }
 
       return res.status(200).send({nstatus:200, message:'Updated successfully' });
 
@@ -104,8 +107,10 @@ function changePassword(req, res) {
   mysql.query(query, [email, user_id], async (err,result) => {
 
     if(err) {
-      return res.status(500).send({ error: 'Error inserting data into database',err });
-    }
+      const error = { message:'Sql Error', error:err };
+      console.log(error);
+      return;
+  }
 
     if(result.length <= 0) {
       return res.status(401).send({ status:401, message:'Invalid credentials' });
