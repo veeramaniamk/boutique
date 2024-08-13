@@ -24,8 +24,8 @@ connection.getConnection(async (err, con) => {
         console.log('Mysql Connection Error -> '+err);
     } else if(con.state === 'disconnected') {
         console.log(`Database connection failed. Check that its running and that your configuration is correct`);
-    } else{
-        console.log('Mysql Connected');
+    } else {
+        console.log('Mysql '+con.state);
     } 
  });
 
