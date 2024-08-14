@@ -1,10 +1,22 @@
-const express    = require('express');
-const router     = express.Router();
-const { addCategory, updateCategory, deleteCategory, getCategory } = require('../designer/clothe_category')
+const express           = require('express');
+const router            = express.Router();
+const material_category = require('../designer/material_category');
+const dress_category    = require('../designer/dress_category');
+const product           = require('../designer/add_product');
 
-router.post('/add_clothe_category', addCategory);
-router.post('/update_clothe_category', updateCategory);
-router.post('/delete_clothe_category', deleteCategory);
-router.post('/get_clothe_category', getCategory);
+//Material Category
+router.post('/add_material_category', material_category.addCategory);
+router.post('/update_material_category', material_category.updateCategory);
+router.post('/delete_material_category', material_category.deleteCategory);
+router.get('/get_material_category', material_category.getCategory);
+
+//Dress Category
+router.post('/add_dress_category', dress_category.addCategory);
+router.post('/update_dress_category', dress_category.updateCategory);
+router.post('/delete_dress_category', dress_category.deleteCategory);
+router.get('/get_dress_category', dress_category.getCategory);
+
+//Add Product
+router.post('/add_product', product.addProduct);
 
 module.exports = router;

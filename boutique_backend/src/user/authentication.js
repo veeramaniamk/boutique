@@ -18,10 +18,10 @@ async function registerUser(req, res) {
         mysql.query(query, [ body.name, body.phone, body.email, body.gender, user_type, password ], (err, result) => {
 
             if(err) {
-                const error = { message:'Sql Error', error:err };
+                const error = { message:'Error', error:err };
                 console.log(error);
-                return;
-            }
+                return res.status(500).send({status:500, error:error.message});
+            } 
 
             return res.status(201).send({status: 201, message: 'User Registered Successfully' });
 
@@ -47,10 +47,10 @@ function signup(req, res) {
 
         mysql.query(checkQuery, (err, result) => {
             if(err) {
-                const error = { message:'Sql Error', error:err };
+                const error = { message:'Error', error:err };
                 console.log(error);
-                return;
-            }
+                return res.status(500).send({status:500, error:error.message});
+            } 
             
             if(result.length > 0) {
                 return res.status(409).send({status:409, message:'User already exists'});
@@ -82,9 +82,9 @@ const signin = (req, res) => {
 
              mysql.query(query, async (err, result) => {
                 if(err) {
-                    const error = { message:'Sql Error', error:err };
+                    const error = { message:'Error', error:err };
                     console.log(error);
-                    return;
+                    return res.status(500).send({status:500, error:error.message});
                 }    
                 
                 if(result.length === 0) {
