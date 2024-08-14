@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Navbar() {
   return (
@@ -10,12 +12,21 @@ function Navbar() {
         </label>
         <label className="logo">BOUTIQUE</label>
         <ul>
-          <li><a className="active nav-con anch" href={ () => false}>Home</a></li>
-          <li><a className="anch nav-con" href={ () => false}>Chat</a></li>
-          <li><a className="anch nav-con" href={ () => false}>Orders</a></li>
-          <li><a className="anch nav-con" href={ () => false}>Profile</a></li>
-          <li><a className="anch nav-con" href={ () => false}>Logout</a></li>
-          {/* <li><a className="anch" href="#">Feedback</a></li> */}
+          <li>
+          <Link className="active nav-con anch" to="/products">Home</Link>
+          </li>
+          <li>
+          <Link className=" nav-con anch" to="/products">Chat</Link>
+          </li>
+          <li>
+          <Link className="nav-con anch" to="/products">Orders</Link>
+          </li>
+          <li>
+          <Link className="nav-con anch" to="/products">Profile</Link>
+          </li>
+          <li>
+          <Link className="nav-con anch" to="/products">Logout</Link>
+          </li>
         </ul>
       </nav>
     </>

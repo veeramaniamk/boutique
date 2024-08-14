@@ -151,6 +151,7 @@ a:hover {
 
 .anch {
   text-decoration: none;
+  color: #fff;
 }
 
 .nav-con{
@@ -466,4 +467,107 @@ input[type='radio']#blue:after {
 .scrollable-row {
   max-height: 1000px; /* Adjust the height as needed */
   overflow-y: auto;
+}
+
+.orders-sec{
+  padding: 20px 0px;
+  border: 1px solid #e8d1d1;
+}
+
+.orders-section{
+  margin: 50px 0px;
+}
+
+.product-over{
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+  margin-left: 33px;
+
+}
+
+.total-pending{
+  list-style-type: none;
+}
+
+.return-pen{
+  padding: 10px 0px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000000;
+}
+
+.product-num{
+  padding: 10px 0px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #FA5CA1;
+}
+
+.monthly-order{
+  margin-top: 30px;
+}
+
+.order-try{
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.btn-tab-style{
+  font-size: 15px;
+    font-weight: 500;
+    background-color: #E4E4E4 !important;
+    color: #000 !important;
+    /* padding: 0px 30px; */
+    border-radius: 10px;
+    border: none;
+    margin-right: 10px;
+    height: 32px;
+    width: 120px;
+}
+
+.btn-tab-style.active {
+  font-size: 15px;
+  font-weight: 500;
+  background-color: #FA5CA1 !important;
+  color: #ffffff !important;
+  /* padding: 0px 30px; */
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+  height: 32px;
+  width: 120px;
+}
+
+.hakoba{
+  font-size: 20px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.col-sle-nec{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.order-colr{
+  font-size: 16px;
+  color: #6E6E6E;
+  font-weight:600 ;
+}
+
+.stat-pen{
+  color: #EB8500;
+    font-weight: 600;
+}
+
+.order-place{
+  border: 1px solid #000;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 25px;
 }
