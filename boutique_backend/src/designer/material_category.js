@@ -73,7 +73,7 @@ const deleteCategory = (req, res) => {
         } 
 
         if(result.affectedRows!=0) {
-            return res.status(200).send({status: 200, message: 'Category Deleted Successfully',result:result});
+            return res.status(200).send({status: 200, message: 'Category Deleted Successfully'});
         }else {
             return res.status(401).send({status:401, message:'Category Not Found'});
         }
