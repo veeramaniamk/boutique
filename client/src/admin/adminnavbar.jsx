@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-function Navbar() {
+function Adminnavbar() {
   return (
     <>
       <nav>
@@ -16,7 +16,10 @@ function Navbar() {
           <Link className="active nav-con anch" to="/products">Home</Link>
           </li>
           <li>
-          <Link className=" nav-con anch" to="/products">Chat</Link>
+          <Link className=" nav-con anch" to="/products">Designers</Link>
+          </li>
+          <li>
+          <Link className="nav-con anch" to="/orders">Customers</Link>
           </li>
           <li>
           <Link className="nav-con anch" to="/orders">Orders</Link>
@@ -25,7 +28,7 @@ function Navbar() {
           <Link className="nav-con anch" to="/profilepage">Profile</Link>
           </li>
           <li>
-          <Link className="nav-con anch" to="/profile">Logout</Link>
+          <Link className="nav-con anch" to="/products">Logout</Link>
           </li>
         </ul>
       </nav>
@@ -33,4 +36,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Adminnavbar;
