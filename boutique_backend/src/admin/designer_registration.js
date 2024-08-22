@@ -18,10 +18,10 @@ async function designerRegisteration(req, res) {
         mysql.query(query, [ name, phone, email, gender, speciality, user_type, password1, activity_status, designer_role, experience, salary], (err, result) => {
             
             if(err) {
-                const error = { status: 500, message:'Sql Error', error:err };
+                const error = { message:'Error', error:err };
                 console.log(error);
-                return;
-            }
+                return res.status(500).send({status:500, error:error.message});
+            } 
 
             return res.status(201).send({status: 201, message: 'User Registered Successfully' });
 
@@ -48,10 +48,10 @@ function registeration(req, res) {
 
         mysql.query(checkQuery, (err, result) => {
             if(err) {
-                const error = { status: 500, message:'Sql Error', error:err };
+                const error = { message:'Error', error:err };
                 console.log(error);
-                return;
-            }
+                return res.status(500).send({status:500, error:error.message});
+            } 
 
             if(result.length > 0) {
                 return res.status(409).send({status:409, message:'User already exists'});

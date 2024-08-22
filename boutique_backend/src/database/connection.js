@@ -10,9 +10,9 @@ const DATABASE = process.env.DATABASE;
 const PORT     = process.env.DB_PORT;
 
 const config   = {
-    host            :   HOST,
+    host            :   'localhost',
     user            :   USER,
-    password        :   PASSWORD,
+    password        :   '',
     port            :   PORT,
     database        :   DATABASE
 };

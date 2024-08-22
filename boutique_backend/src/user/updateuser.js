@@ -58,10 +58,10 @@ function modifyUserInfo(req, res) {
     const query = `UPDATE signup SET name=?,phone=?,email=?,gender=?,update_on=? WHERE id=?`;
     mysql.query(query,[name, phone, email, gender, updated_on, user_id],(err,result) => {
       if(err) {
-        const error = { message:'Sql Error', error:err };
+        const error = { message:'Error', error:err };
         console.log(error);
-        return;
-      }
+        return res.status(500).send({status:500, error:error.message});
+    } 
 
         return res.status(200).send({nstatus:200, message:'Updated successfully' });
 
@@ -84,10 +84,10 @@ async function setPassword(req, res) {
     mysql.query(query, [ password, user_id ], (err, result) => {
 
       if(err) {
-        const error = { message:'Sql Error', error:err };
+        const error = { message:'Error', error:err };
         console.log(error);
-        return;
-     }
+        return res.status(500).send({status:500, error:error.message});
+      } 
 
       return res.status(200).send({nstatus:200, message:'Updated successfully' });
 
@@ -107,10 +107,10 @@ function changePassword(req, res) {
   mysql.query(query, [email, user_id], async (err,result) => {
 
     if(err) {
-      const error = { message:'Sql Error', error:err };
+      const error = { message:'Error', error:err };
       console.log(error);
-      return;
-  }
+      return res.status(500).send({status:500, error:error.message});
+    } 
 
     if(result.length <= 0) {
       return res.status(401).send({ status:401, message:'Invalid credentials' });

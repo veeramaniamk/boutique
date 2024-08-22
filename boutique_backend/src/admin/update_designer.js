@@ -16,9 +16,10 @@ function updateDesignerInformation(req, res) {
         mysql.query(query, [name, phone, email, gender, speciality, updated_on, activity_status, designer_role, experience, salary, user_id], (err, result) => {
     
             if(err) {
-                console.log({ message:'Sql Error', error:err });
-                return;
-            }
+                const error = { message:'Error', error:err };
+                console.log(error);
+                return res.status(500).send({status:500, error:error.message});
+            } 
     
             return res.status(200).send({nstatus:200, message:'Updated successfully' });
     
