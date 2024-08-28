@@ -15,40 +15,92 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).array('product_images');
 
 const addProduct = (req, res) => {
+
+    const { 
+      designer_id, product_name, material, product_description, product_for, 
+      embellishment, colors, size, trim_border, fabric, sleeves, pattern, amount } = req.body;
+      
+
+    if(!designer_id || !product_name || !material || !product_description || !product_for || !embellishment
+        || !trim_border || !fabric || !sleeves ||  !pattern || !amount || !Array.isArray(colors) || !Array.isArray(size) ) {
+          return res.status(400).send({ status: 400, message: 'Fields cannot be empty!', body:""+req.body.designer_id });
+    }
+
+    if(size.length==0 || colors.length==0) {
+      return res.status(400).send({ status: 400, message: 'Fields cannot be empty!' });
+    }
+
     upload(req, res, (err) => {
 
-        const designer_id               = req.body.designer_id;
-        const product_name              = req.body.product_name;
-        const product_details           = req.body.product_details;
-        const dress_category_name       = req.body.dress_category_name;
-        const material_category_name    = req.body.material_category_name;
-        const gender                    = req.body.gender;
-        const price                     = req.body.price;
+        const file = req.files
 
         if (err instanceof multer.MulterError) {
             return res.status(500).json({ status: 500, message: 'File upload error', error:err});
         } else if (err) {
             return res.status(500).json({ status: 500, message: 'An unknown error occurred', error:err.message});
         }
-
-        if (!designer_id || !req.files || req.files.length === 0) {
+        if (!file || file.length === 0) {
             return res.status(400).json({ status: 400, message: 'Content or image(s) missing' });
         }
-    
-        // const content   = req.body.content;
-        const fileNames = req.files.map(file => file.filename).join(',');
-        // const sql = 'INSERT INTO image_upload (image_name, message) VALUES (?, ?)';
-        //   pool.query(sql, [fileNames, content], (err, result) => {
-        //     if (err) {
-        //       return res.status(500).json({ error: 'Error inserting data into database' });
-        //     }
-        //   });
-        // Save to database or perform any other required action
-        // For demonstration, we are simply logging the content and file names
-        console.log('Content:', designer_id);
-        console.log('Image filenames:', fileNames);
-    
-        res.status(200).json({ status: 200, message: 'Submitted successfully'});
+
+        const addProductQuery = `select add_product(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) as product_id`;
+        
+        mysql.query(addProductQuery, [designer_id, product_name, material, product_description, product_for, 
+          embellishment, trim_border, sleeves, pattern, amount, fabric], (err, result) => {
+          if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
+          
+          const product_id = result[0].product_id;
+          if(product_id == 0) {
+            return res.status(400).json({ status: 200, message: 'Prodect Not Add', size:result});
+          }
+
+          let imageValue = ``;
+
+          for(let i=0;i<file.length;i++) {
+            imageValue += `(${product_id},'${file[i].filename}')`;
+              if(file.length-1 != i) {
+                imageValue +=`,`;
+              }
+          }
+
+          let productImages = `INSERT INTO product_images(product_id, product_image) values `+ imageValue;
+          console.log(productImages);
+          mysql.query(productImages, (err, result) => {
+            if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
+          })
+
+          let colorValue = ``;
+
+          for(let i=0;i<colors.length;i++) {
+            colorValue += `(${product_id},'${colors[i]}')`;
+              if(colors.length-1!=i) {
+                colorValue +=`,`;
+              }
+          }
+
+          let productColors = `INSERT INTO product_colors(product_id, color_name) VALUES ` + colorValue;
+          mysql.query(productColors, (err, result) => {
+            if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
+          })
+
+          let sizeValue = ``;
+
+          for(let i=0;i<size.length;i++) {
+            sizeValue += `(${product_id},'${size[i]}')`;
+              if(size.length-1!=i) {
+                sizeValue +=`,`;
+              }
+          }
+
+          let productSize = `INSERT INTO product_size(product_id, size) VALUES ` + sizeValue;
+          mysql.query(productSize, (err, result) => {
+            if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
+          })
+
+        return res.status(200).json({ status: 200, message: 'Submitted successfully'});
+
+        })
+
       });
 }
 
