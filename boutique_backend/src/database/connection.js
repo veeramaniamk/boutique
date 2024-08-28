@@ -3,18 +3,12 @@ const dotenv    = require('dotenv');
 
 dotenv.config();
 
-const HOST     = process.env.HOST;
-const USER     = process.env.USER;
-const PASSWORD = process.env.PASSWORD;
-const DATABASE = process.env.DATABASE;
-const PORT     = process.env.DB_PORT;
-
 const config   = {
     host            :   'localhost',
-    user            :   USER,
-    password        :   '',
-    port            :   PORT,
-    database        :   DATABASE
+    user            :   'tunetutu_veeramani',
+    password        :   'veeramani2#$2001',
+    port            :   3306,
+    database        :   'tunetutu_boutique'
 };
 
 const connection = mysql.createPool(config);

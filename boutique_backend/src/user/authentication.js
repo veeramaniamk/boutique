@@ -54,7 +54,7 @@ function signup(req, res) {
             
             if(result.length > 0) {
                 return res.status(409).send({status:409, message:'User already exists'});
-            } 
+            }
 
             registerUser(req, res);
 
