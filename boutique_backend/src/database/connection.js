@@ -5,10 +5,10 @@ dotenv.config();
 
 const config   = {
     host            :   'localhost',
-    user            :   'tunetutu_veeramani',
-    password        :   'veeramani2#$2001',
+    user            :   'root',
+    password        :   '',
     port            :   3306,
-    database        :   'tunetutu_boutique'
+    database        :   'boutique'
 };
 
 const connection = mysql.createPool(config);
