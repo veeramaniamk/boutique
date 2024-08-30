@@ -68,7 +68,7 @@ const addProduct = (req, res) => {
           }
 
           let productImages = `INSERT INTO product_images(product_id, product_image) values `+ imageValue;
-          console.log(productImages);
+          // console.log(productImages);
           mysql.query(productImages, (err, result) => {
             if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
           })

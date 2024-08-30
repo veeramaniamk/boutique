@@ -86,7 +86,7 @@ const deleteCategory = (req, res) => {
 
 const getCategory = (req, res) => {
 
-    const query = `select id, cloth_name, gender_category from material_category where product_active=true`;
+    const query = `select id, cloth_name, category_for from material_category where product_active=true`;
 
     mysql.query(query, (err, result) => {
 
@@ -103,4 +103,4 @@ const getCategory = (req, res) => {
 }
 
 
-module.exports = { addCategory, updateCategory, deleteCategory, getCategory};
+module.exports = { addCategory, updateCategory, deleteCategory, getCategory };
