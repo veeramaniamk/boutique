@@ -16,23 +16,27 @@ const upload = multer({ storage: storage }).array('product_images');
 
 const addProduct = (req, res) => {
 
-    const { 
-      designer_id, product_name, material, product_description, product_for, 
-      embellishment, colors, size, trim_border, fabric, sleeves, pattern, amount } = req.body;
-      
-
-    if(!designer_id || !product_name || !material || !product_description || !product_for || !embellishment
-        || !trim_border || !fabric || !sleeves ||  !pattern || !amount || !Array.isArray(colors) || !Array.isArray(size) ) {
-          return res.status(400).send({ status: 400, message: 'Fields cannot be empty!', body:""+req.body.designer_id });
-    }
-
-    if(size.length==0 || colors.length==0) {
-      return res.status(400).send({ status: 400, message: 'Fields cannot be empty!' });
-    }
-
     upload(req, res, (err) => {
 
-        const file = req.files
+      const { 
+        designer_id, product_name,  product_description, material_id, product_assortment_id, gender_category, 
+        embellishment, trim_border, sleeves, pattern, quantity, amount, colors, size } = req.body;
+        
+    
+        if(!designer_id || !product_name || !product_description || !gender_category || !material_id || !product_assortment_id || !embellishment
+            || !trim_border || !sleeves ||  !pattern || !quantity || !amount ) {
+              return res.status(400).send({ status: 400, message: 'Fields cannot be empty!'});
+        }
+    
+        if(!Array.isArray(colors) || !Array.isArray(size)) {
+          return res.status(400).send({ status: 400, message: '!Color or Size Value Missing' });
+        }
+        
+        if(size.length==0 || colors.length==0) {
+          return res.status(400).send({ status: 400, message: 'Size or Color Empty' });
+        }
+
+        const file = req.files;
 
         if (err instanceof multer.MulterError) {
             return res.status(500).json({ status: 500, message: 'File upload error', error:err});
@@ -43,10 +47,10 @@ const addProduct = (req, res) => {
             return res.status(400).json({ status: 400, message: 'Content or image(s) missing' });
         }
 
-        const addProductQuery = `select add_product(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) as product_id`;
+        const addProductQuery = `select add_product(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) as product_id`;
         
-        mysql.query(addProductQuery, [designer_id, product_name, material, product_description, product_for, 
-          embellishment, trim_border, sleeves, pattern, amount, fabric], (err, result) => {
+        mysql.query(addProductQuery, [designer_id, product_name, product_description, gender_category, material_id,
+           product_assortment_id, embellishment, trim_border, sleeves, pattern, quantity, amount], (err, result) => {
           if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
           
           const product_id = result[0].product_id;
