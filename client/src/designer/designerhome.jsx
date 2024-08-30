@@ -1,7 +1,11 @@
 import React from "react";
-import image20 from "../boutique-imag/image 20.png"
-import image21 from "../boutique-imag/image 21.png"
-import image22 from "../boutique-imag/image 22.png"
+import image18 from '../boutique-imag/image 18.png';
+import image8 from '../boutique-imag/image 8.png';
+import image7 from '../boutique-imag/image 7.png';
+import image4 from '../boutique-imag/image 4.png';
+import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const Designerhome = () => {
 
@@ -9,7 +13,7 @@ const Designerhome = () => {
     <section className="orders-section">
       <div className="container">
         <div className="row">
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <div className="orders-sec">
               <h4 className="product-over">Products Overview</h4>
               <div className="row">
@@ -59,153 +63,60 @@ const Designerhome = () => {
             </div>
           </div>
 
-          <div className="col-lg-8">
-            <h4 className="order-try">Next Orders</h4>
-            <div className="orders-tabs mt-3">
-              <div className="tab-content mt-4 p-3 bg-light border rounded">
-                  <div>
-                        <div className="order-place">
-                            <div className="row">
-                                <div className="col-lg-9">
-                                <h4 className="hakoba">Yellow hakoba cotton readymade blouse</h4>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">color : yellow</div>
-                                    <div className="order-colr">sleeve:Half Sleeve</div>
-                                    <div className="order-colr">Neck:V-Neck</div>
-                                 </div>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">Order Placed on 14/06/2024 </div>
-                                    <div className="order-colr">Will Delivery on 24/06/2024</div>
-                                 </div>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">Ordered by Kalaiarasi </div>
-                                    <div className="order-colr">Amount : 1600</div>
-                                 </div>
-                                </div>
-                                <div className="col-lg-3 d-flex justify-content-center align-items-center">
-                                <img src={image20} alt="" className="img-fluid" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="order-place">
-                            <div className="row">
-                                <div className="col-lg-9">
-                                <h4 className="hakoba">Yellow hakoba cotton readymade blouse</h4>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">color : yellow</div>
-                                    <div className="order-colr">sleeve:Half Sleeve</div>
-                                    <div className="order-colr">Neck:V-Neck</div>
-                                 </div>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">Order Placed on 14/06/2024 </div>
-                                    <div className="order-colr">Will Delivery on 24/06/2024</div>
-                                 </div>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">Ordered by Kalaiarasi </div>
-                                    <div className="order-colr">Amount : 1600</div>
-                                 </div>
-                                </div>
-                                <div className="col-lg-3 d-flex justify-content-center align-items-center">
-                                <img src={image21} alt="" className="img-fluid" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="order-place">
-                            <div className="row">
-                                <div className="col-lg-9">
-                                <h4 className="hakoba">Yellow hakoba cotton readymade blouse</h4>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">color : yellow</div>
-                                    <div className="order-colr">sleeve:Half Sleeve</div>
-                                    <div className="order-colr">Neck:V-Neck</div>
-                                 </div>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">Order Placed on 14/06/2024 </div>
-                                    <div className="order-colr">Will Delivery on 24/06/2024</div>
-                                 </div>
-                                 <div className="col-sle-nec">
-                                    <div className="order-colr">Ordered by Kalaiarasi </div>
-                                    <div className="order-colr">Amount : 1600</div>
-                                 </div>
-                                </div>
-                                <div className="col-lg-3 d-flex justify-content-center align-items-center">
-                                <img src={image22} alt="" className="img-fluid" />
-                                </div>
-                            </div>
-                        </div>
-                  </div>
-                   <div>
-                   <div className="order-place">
-                       <div className="row">
-                           <div className="col-lg-9">
-                           <h4 className="hakoba">Yellow hakoba cotton readymade blouse</h4>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">color : yellow</div>
-                               <div className="order-colr">sleeve:Half Sleeve</div>
-                               <div className="order-colr">Neck:V-Neck</div>
-                            </div>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">Order Placed on 14/06/2024 </div>
-                               <div className="order-colr">Will Delivery on 24/06/2024</div>
-                            </div>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">Ordered by Kalaiarasi </div>
-                               <div className="order-colr">Amount : 1600</div>
-                            </div>
-                           </div>
-                           <div className="col-lg-3 d-flex justify-content-center align-items-center">
-                           <img src={image20} alt="" className="img-fluid" />
-                           </div>
-                       </div>
-                   </div>
-                   <div className="order-place">
-                       <div className="row">
-                           <div className="col-lg-9">
-                           <h4 className="hakoba">Full Sleeve Handloom Chanderi Silk Golden Blouse With Zar</h4>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">color : yellow</div>
-                               <div className="order-colr">sleeve:Half Sleeve</div>
-                               <div className="order-colr">Neck:V-Neck</div>
-                            </div>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">Order Placed on 14/06/2024 </div>
-                               <div className="order-colr">Will Delivery on 24/06/2024</div>
-                            </div>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">Ordered by Kalaiarasi </div>
-                               <div className="order-colr">Amount : 1600</div>
-                            </div>
-                           </div>
-                           <div className="col-lg-3 d-flex justify-content-center align-items-center">
-                           <img src={image21} alt="" className="img-fluid" />
-                           </div>
-                       </div>
-                   </div>
-                   <div className="order-place">
-                       <div className="row">
-                           <div className="col-lg-9">
-                           <h4 className="hakoba">Rang Siah Melange Blouse</h4>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">color : yellow</div>
-                               <div className="order-colr">sleeve:Half Sleeve</div>
-                               <div className="order-colr">Neck:V-Neck</div>
-                            </div>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">Order Placed on 14/06/2024 </div>
-                               <div className="order-colr">Will Delivery on 24/06/2024</div>
-                            </div>
-                            <div className="col-sle-nec">
-                               <div className="order-colr">Ordered by Kalaiarasi </div>
-                               <div className="order-colr">Amount : 1600</div>
-                            </div>
-                           </div>
-                           <div className="col-lg-3 d-flex justify-content-center align-items-center">
-                           <img src={image22} alt="" className="img-fluid" />
-                           </div>
-                       </div>
-                   </div>
-                 </div>
+          <div className="col-lg-9 col-sm-12">
+            <div className="aadingg-product">
+              <button className="ad-producct" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                Add product +
+              </button>
+
+              <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div className="offcanvas-header">
+                  <h3 className="duct-add">Add product</h3>
+
+                  <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div className="offcanvas-body">
+                 <form action="">
+                    <input type="text" className="inp-add-prdut" placeholder="name" />
+                    <input type="text" className="inp-add-prdut" placeholder="price" />
+                    <input type="text" className="inp-add-prdut" placeholder="Material" />
+                    <input type="text" className="inp-add-prdut" placeholder="Sleeve Style" />
+                    <input type="text" className="inp-add-prdut" placeholder="Neck Style" />
+                    <input type="text" className="inp-add-prdut" placeholder="Length" />
+                    <input type="text" className="inp-add-prdut" placeholder="Care Instructions" />
+                    <input type="text" className="inp-add-prdut" placeholder="Colors" />
+                    <input type="text" className="inp-add-prdut" placeholder="Sizes" />
+                    <input type="file" className="inp-add-prdut" accept="image/*" placeholder="Upload Image" />
+                     <button className="product-submit">Submit</button>
+                 </form>
+                </div>
               </div>
+            </div>
+
+            <div className="row" style={{ marginTop: '10px' }}>
+              {[
+                { img: image18, title: 'Half Sleeve Saree Blouse', material: 'Silk Cotton', price: 150 },
+                { img: image8, title: 'Half Sleeve Saree Blouse', material: 'Silk Cotton', price: 150 },
+                { img: image7, title: 'Half Sleeve Saree Blouse', material: 'Silk Cotton', price: 150 },
+                { img: image8, title: 'Half Sleeve Saree Blouse', material: 'Silk Cotton', price: 150 },
+                { img: image8, title: 'Half Sleeve Saree Blouse', material: 'Silk Cotton', price: 150 },
+                { img: image8, title: 'Half Sleeve Saree Blouse', material: 'Silk Cotton', price: 150 },
+                { img: image8, title: 'Half Sleeve Saree Blouse', material: 'Silk Cotton', price: 150 },
+                { img: image4, title: 'Half Sleeve Saree Blouse', material: 'Silk Cotton', price: 150 },
+              ].map((item, index) => (
+                <div className="col-lg-3 col-sm-6 col-but" key={index}>
+                  <Link to="/userproductview" style={{ textDecoration: "none" }}>
+                    <div className="card" style={{ width: '100%' }}>
+                      <img src={item.img} className="card-img-top" alt="..." />
+                      <div className="card-body">
+                        <h3 className="half-sle">{item.title}</h3>
+                        <h4 className="material">Material: {item.material}</h4>
+                        <h3 className="rate">₹ {item.price}</h3>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -214,4 +125,4 @@ const Designerhome = () => {
   );
 };
 
-export default Designerhome ;
+export default Designerhome;

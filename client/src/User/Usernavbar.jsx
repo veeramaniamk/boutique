@@ -13,16 +13,16 @@ function Navbar() {
         <label className="logo">BOUTIQUE</label>
         <ul>
           <li>
-          <Link className="active nav-con anch" to="/products">Home</Link>
+          <Link className="active nav-con anch" to="/usermain">Home</Link>
           </li>
           <li>
-          <Link className=" nav-con anch" to="/products">Chat</Link>
+          <Link className=" nav-con anch" to="/usermain">Chat</Link>
           </li>
           <li>
-          <Link className="nav-con anch" to="/orders">Orders</Link>
+          <Link className="nav-con anch" to="/userorders">Orders</Link>
           </li>
           <li>
-          <Link className="nav-con anch" to="/profilepage">Profile</Link>
+          <Link className="nav-con anch" to="/profile">Profile</Link>
           </li>
           <li>
           <Link className="nav-con anch" to="/profile">Logout</Link>
