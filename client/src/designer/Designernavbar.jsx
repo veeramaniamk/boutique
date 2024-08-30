@@ -19,10 +19,10 @@ function Navbar() {
           <Link className=" nav-con anch" to="/products">Chat</Link>
           </li>
           <li>
-          <Link className="nav-con anch" to="/orders">Orders</Link>
+          <Link className="nav-con anch" to="/designerorder">Orders</Link>
           </li>
           <li>
-          <Link className="nav-con anch" to="/profilepage">Profile</Link>
+          <Link className="nav-con anch" to="/profile">Profile</Link>
           </li>
           <li>
           <Link className="nav-con anch" to="/profile">Logout</Link>

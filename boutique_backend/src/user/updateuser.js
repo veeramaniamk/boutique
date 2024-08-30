@@ -49,9 +49,9 @@ function modifyUserInfo(req, res) {
 
     const { name,phone,email,gender,user_id } = req.body;
 
-    if(!name || !phone || !email || !gender || !user_id) {
-      return res.status(400).send({status: 400, message: 'Fields cannot be empty!'});
-    }
+      // if(!name || !phone || !email || !gender || !user_id) {
+      //   return res.status(400).send({status: 400, message: 'Fields cannot be empty!'});
+      // }
 
     var updated_on = new Date();
 
