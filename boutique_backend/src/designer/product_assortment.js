@@ -1,16 +1,16 @@
 const mysql = require('../database/connection');
 
-const addGender = (req, res) => {
+const addAssortment = (req, res) => {
 
-    const { category_name } = req.body;
+    const { category_name, gender_category } = req.body;
 
     if(!category_name) {
         return res.status(400).send({ status: 400, message: 'Fields cannot be empty!' });
     }
 
-    const query = `INSERT INTO gender_category (category_name) VALUES (?)`;
+    const query = `INSERT INTO product_assortment (category_name, gender_category) VALUES (?, ?)`;
 
-    mysql.query(query, [category_name], (err, result) => {
+    mysql.query(query, [category_name, gender_category], (err, result) => {
 
         if(err) {
             const error = { message:'Error', error:err };
@@ -18,25 +18,25 @@ const addGender = (req, res) => {
             return res.status(500).send({status:500, error:error.message});
         }
 
-        return res.status(201).send({status: 201, message: 'Category Added Successfully'});
+        return res.status(201).send({status: 201, message: 'Assortment Added Successfully'});
         
     })
 
 }
 
-const updateGender = (req, res) => {
+const updateAssortment = (req, res) => {
 
-    const { category_id, category_name, updater_id } = req.body;
+    const { id, category_name, gender_category, updater_id } = req.body;
 
-    if(!category_name || !category_id || !updater_id) {
+    if(!category_name || !id || !updater_id) {
         return res.status(400).send({ status: 400, message: 'Fields cannot be empty!' });
     }
 
     const updated_on = new Date();
 
-    const query = `UPDATE gender_category SET category_name=?, updated_on=?, updater_id=? WHERE category_id=? and category_active=true`;
+    const query = `UPDATE product_assortment SET category_name=?, gender_category=?, updated_on=?, updater_id=? WHERE id=? AND category_active=True `;
 
-    mysql.query(query, [category_name, updated_on, updater_id, category_id], (err, result) => {
+    mysql.query(query, [category_name, gender_category, updated_on, updater_id,  id], (err, result) => {
 
         if(err) {
             const error = { message:'Error', error:err };
@@ -45,18 +45,18 @@ const updateGender = (req, res) => {
         } 
 
         if(result.affectedRows!=0) {
-            return res.status(200).send({status: 200, message: 'Category Updated Successfully'});
+            return res.status(200).send({status: 200, message: 'Assortment Updated Successfully'});
         }else {
-            return res.status(401).send({status:401, message:'Category Not Found'});
+            return res.status(401).send({status:401, message:'Assortment Not Found'});
         }
 
     })
     
 }
 
-const deleteGender = (req, res) => {
+const deleteAssortment = (req, res) => {
 
-    const { category_id, updater_id } = req.body;
+    const { id, updater_id } = req.body;
 
     if(!category_id) {
         return res.status(400).send({ status: 400, message: 'Fields cannot be empty!' });
@@ -64,9 +64,9 @@ const deleteGender = (req, res) => {
 
     const updated_on = new Date();
 
-    const query = `UPDATE gender_category SET category_active=false, updated_on=?, updater_id=?  WHERE category_id=? AND category_active=True`;
+    const query = `UPDATE product_assortment SET category_active=false, updated_on=?, updater_id=?  WHERE id=? AND category_active=True`;
 
-    mysql.query(query, [updated_on, updater_id, category_id], (err, result) => {
+    mysql.query(query, [updated_on, updater_id, id], (err, result) => {
 
         if(err) {
             const error = { message:'Error', error:err };
@@ -102,4 +102,4 @@ const getGender = (req, res) => {
 
 }
 
-module.exports = {addGender, updateGender, deleteGender, getGender};
+module.exports = {addAssortment, updateAssortment, deleteAssortment, getGender};
