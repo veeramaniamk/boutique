@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { Dropdown } from 'react-bootstrap';
 
 function Navbar() {
   return (
@@ -10,7 +10,7 @@ function Navbar() {
         <label htmlFor="check" className="checkbtn">
           <i className="fas fa-bars"></i>
         </label>
-        <label className="logo">BOUTIQUE</label>
+        <label className="logo">Knitting Nest</label>
         <ul>
           <li>
           <Link className="active nav-con anch" to="/products">Home</Link>
@@ -25,7 +25,7 @@ function Navbar() {
           <Link className="nav-con anch" to="/profile">Profile</Link>
           </li>
           <li>
-          <Link className="nav-con anch" to="/profile">Logout</Link>
+          <Link className="nav-con anch" to="/profile">Product Lists</Link>
           </li>
         </ul>
       </nav>
