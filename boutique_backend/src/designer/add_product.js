@@ -21,8 +21,7 @@ const addProduct = (req, res) => {
       const { 
         designer_id, product_name,  product_description, material_id, product_assortment_id, gender_category, 
         embellishment, trim_border, sleeves, pattern, quantity, amount, colors, size } = req.body;
-        
-    
+
         if(!designer_id || !product_name || !product_description || !gender_category || !material_id || !product_assortment_id || !embellishment
             || !trim_border || !sleeves ||  !pattern || !quantity || !amount ) {
               return res.status(400).send({ status: 400, message: 'Fields cannot be empty!'});
@@ -34,6 +33,18 @@ const addProduct = (req, res) => {
         
         if(size.length==0 || colors.length==0) {
           return res.status(400).send({ status: 400, message: 'Size or Color Empty' });
+        }
+
+        const checkSizeValue = size[0];
+
+        if(!checkSizeValue.size || !checkSizeValue.quantity || !checkSizeValue.amount) {
+          return res.status(400).send({ status: 400, message: 'Size value are empty' });
+        }
+        
+        for(let i=0;i<size.length;i++) {
+          console.log(i+" "+size[i].quantity);
+          console.log(i+" "+size[i].amount);
+          console.log(i+" "+size[i].size);
         }
 
         const file = req.files;
@@ -90,13 +101,14 @@ const addProduct = (req, res) => {
           let sizeValue = ``;
 
           for(let i=0;i<size.length;i++) {
-            sizeValue += `(${product_id},'${size[i]}')`;
+            sizeValue += `(${product_id},'${size[i].size}', ${size[i].quantity}, ${size[i].amount})`;
               if(size.length-1!=i) {
                 sizeValue +=`,`;
               }
           }
+          console.log(sizeValue);
 
-          let productSize = `INSERT INTO product_size(product_id, size) VALUES ` + sizeValue;
+          let productSize = `INSERT INTO product_size( product_id, size, quantity, amount) VALUES ` + sizeValue;
           mysql.query(productSize, (err, result) => {
             if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
           })
