@@ -16,17 +16,17 @@ const upload = multer({ storage: storage }).array('product_images');
 
 const addProduct = (req, res) => {
 
+
     upload(req, res, (err) => {
 
-      const { 
-        designer_id, product_name,  product_description, material_id, product_assortment_id, gender_category, 
-        embellishment, trim_border, sleeves, pattern, quantity, amount, colors, size } = req.body;
+      const { designer_id, product_name,  product_description, material_id, product_assortment_id, gender_category, 
+              embellishment, trim_border, sleeves, pattern, quantity, amount, colors, size } = req.body;
 
-        if(!designer_id || !product_name || !product_description || !gender_category || !material_id || !product_assortment_id || !embellishment
-            || !trim_border || !sleeves ||  !pattern || !quantity || !amount ) {
+        if(!designer_id || !product_name || !product_description || !gender_category || !material_id || !product_assortment_id
+           || !embellishment || !trim_border || !sleeves ||  !pattern || !quantity || !amount ) {
               return res.status(400).send({ status: 400, message: 'Fields cannot be empty!'});
         }
-    
+
         if(!Array.isArray(colors) || !Array.isArray(size)) {
           return res.status(400).send({ status: 400, message: '!Color or Size Value Missing' });
         }
@@ -62,6 +62,7 @@ const addProduct = (req, res) => {
         
         mysql.query(addProductQuery, [designer_id, product_name, product_description, gender_category, material_id,
            product_assortment_id, embellishment, trim_border, sleeves, pattern, quantity, amount], (err, result) => {
+            
           if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
           
           const product_id = result[0].product_id;
@@ -106,14 +107,13 @@ const addProduct = (req, res) => {
                 sizeValue +=`,`;
               }
           }
-          console.log(sizeValue);
 
           let productSize = `INSERT INTO product_size( product_id, size, quantity, amount) VALUES ` + sizeValue;
           mysql.query(productSize, (err, result) => {
             if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
           })
 
-        return res.status(200).json({ status: 200, message: 'Submitted successfully'});
+          return res.status(200).json({ status: 200, message: 'Submitted successfully'});
 
         })
 
