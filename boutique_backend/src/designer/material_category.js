@@ -12,8 +12,11 @@ const addCategory = (req, res) => {
 
     mysql.query(query, [category_name, gender_id], (err, result) => {
 
-        if(err) {
-            const error = { message:'Error', error:err };
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(409).send({ status: 409, message: 'Duplicate entry: This category and gender combination already exists.' });
+            }
+            const error = { message: 'Error', error: err };
             console.log(error);
             return res.status(500).send({status:500, message:error.message});
         }
@@ -38,10 +41,13 @@ const updateCategory = (req, res) => {
 
     mysql.query(query, [category_name, gender_id, updated_on, category_id, updater_id], (err, result) => {
 
-        if(err) {
-            const error = { message:'Error', error:err };
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(409).send({ status: 409, message: 'Duplicate entry: This category and gender combination already exists.' });
+            }
+            const error = { message: 'Error', error: err };
             console.log(error);
-            return res.status(500).send({status:500, message:error.message});
+            return res.status(500).send({ status: 500, error: error.message });
         } 
 
         if(result.affectedRows!=0) {
