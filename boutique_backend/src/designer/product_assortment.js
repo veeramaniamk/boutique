@@ -1,27 +1,26 @@
 const mysql = require('../database/connection');
 
 const addAssortment = (req, res) => {
-
     const { category_name, gender_category } = req.body;
 
-    if(!category_name) {
+    if (!category_name || !gender_category) {
         return res.status(400).send({ status: 400, message: 'Fields cannot be empty!' });
     }
 
     const query = `INSERT INTO product_assortment (category_name, gender_category) VALUES (?, ?)`;
 
     mysql.query(query, [category_name, gender_category], (err, result) => {
-
-        if(err) {
-            const error = { message:'Error', error:err };
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(409).send({ status: 409, message: 'Duplicate entry: This category and gender combination already exists.' });
+            }
+            const error = { message: 'Error', error: err };
             console.log(error);
-            return res.status(500).send({status:500, error:error.message});
+            return res.status(500).send({ status: 500, error: error.message });
         }
 
-        return res.status(201).send({status: 201, message: 'Assortment Added Successfully'});
-        
-    })
-
+        return res.status(201).send({ status: 201, message: 'Assortment Added Successfully' });
+    });
 }
 
 const updateAssortment = (req, res) => {
@@ -38,10 +37,13 @@ const updateAssortment = (req, res) => {
 
     mysql.query(query, [category_name, gender_category, updated_on, updater_id,  id], (err, result) => {
 
-        if(err) {
-            const error = { message:'Error', error:err };
+        if (err) {
+            if (err.code === 'ER_DUP_ENTRY') {
+                return res.status(409).send({ status: 409, message: 'Duplicate entry: This category and gender combination already exists.' });
+            }
+            const error = { message: 'Error', error: err };
             console.log(error);
-            return res.status(500).send({status:500, error:error.message});
+            return res.status(500).send({ status: 500, error: error.message });
         } 
 
         if(result.affectedRows!=0) {
@@ -58,7 +60,7 @@ const deleteAssortment = (req, res) => {
 
     const { id, updater_id } = req.body;
 
-    if(!category_id) {
+    if(!id) {
         return res.status(400).send({ status: 400, message: 'Fields cannot be empty!' });
     }
 
@@ -84,22 +86,26 @@ const deleteAssortment = (req, res) => {
 
 }
 
-const getGender = (req, res) => {
+const getAssortment = (req, res) => {
 
-    const query = `select category_id, category_name from gender_category`;
+    const query = `select id, category_name, gender_category from product_assortment`;
 
     mysql.query(query, (err, result)=>{
 
         if(err){
             const error = { message:'Error', error:err };
             console.log(error);
-            return res.status(500).send({status:500, error:error.message});
+            return res.status(500).send({status:500, message: error.message});
         } 
 
-        return res.status(200).send({status: 200, data:result});
+        if(result.length==0){
+            return res.status(500).send({status:500, message: 'Assortment Not Found'});
+        }
+
+        return res.status(200).send({status: 200, message:'Assortment Selected Successfully', data:result});
 
     })
 
 }
 
-module.exports = {addAssortment, updateAssortment, deleteAssortment, getGender};
+module.exports = {addAssortment, updateAssortment, deleteAssortment, getAssortment};

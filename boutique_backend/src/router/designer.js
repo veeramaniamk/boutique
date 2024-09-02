@@ -3,7 +3,7 @@ const router            = express.Router();
 
 //First Call the file here 
 const material_category = require('../designer/material_category');
-const dress_category    = require('../designer/dress_category');
+// const dress_category    = require('../designer/dress_category');
 const product           = require('../designer/add_product');
 const gender            = require('../designer/gender');
 const productAssortment = require('../designer/product_assortment');
@@ -16,10 +16,10 @@ router.post('/delete_material_category', material_category.deleteCategory);
 router.get('/get_material_category', material_category.getCategory);
 
 //Dress Category
-router.post('/add_dress_category', dress_category.addCategory);
-router.post('/update_dress_category', dress_category.updateCategory);
-router.post('/delete_dress_category', dress_category.deleteCategory);
-router.get('/get_dress_category', dress_category.getCategory);
+// router.post('/add_dress_category', dress_category.addCategory);
+// router.post('/update_dress_category', dress_category.updateCategory);
+// router.post('/delete_dress_category', dress_category.deleteCategory);
+// router.get('/get_dress_category', dress_category.getCategory);
 
 //Gender Category
 router.post('/add_gender', gender.addGender);
@@ -31,6 +31,7 @@ router.post('/read_gender', gender.getGender);
 router.post('/add_assortment', productAssortment.addAssortment);
 router.post('/update_assortment', productAssortment.updateAssortment);
 router.post('/delete_assortment', productAssortment.deleteAssortment);
+router.post('/read_assortment', productAssortment.getAssortment);
 
 
 
