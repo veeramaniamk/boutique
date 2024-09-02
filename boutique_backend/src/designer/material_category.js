@@ -18,8 +18,8 @@ const addCategory = (req, res) => {
             }
             const error = { message: 'Error', error: err };
             console.log(error);
-            return res.status(500).send({ status: 500, error: error.message });
-        } 
+            return res.status(500).send({status:500, message:error.message});
+        }
 
         return res.status(201).send({status: 201, message: 'Category Added Successfully'});
         
@@ -70,7 +70,7 @@ const deleteCategory = (req, res) => {
 
     const updated_on = new Date();
 
-    const query = `UPDATE material_category SET product_active=false, updated_on=?, updater_id=?  WHERE id=?`;
+    const query = `UPDATE material_category SET product_active=false, updated_on=?, updater_id=?  WHERE id=? and product_active=true`;
 
     mysql.query(query, [updated_on, updater_id, category_id], (err, result) => {
 
@@ -92,7 +92,21 @@ const deleteCategory = (req, res) => {
 
 const getCategory = (req, res) => {
 
-    const query = `select id, cloth_name, gender_category from material_category where product_active=true`;
+    const gender_id = req.query.gender_id;
+
+    let query = ``;
+
+    if(!gender_id) {
+        query = `select id, cloth_name, gender_category from material_category where product_active=true`;
+    } else {
+
+        if(Number.isInteger(gender_id)) {
+            return res.status(400).send({ status: 400, message: 'ID Must Be Number' });
+        }
+
+        query = `select id, cloth_name, gender_category from material_category where product_active=true and gender_category=${gender_id}`;
+
+    }
 
     mysql.query(query, (err, result) => {
 

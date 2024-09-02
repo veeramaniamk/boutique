@@ -3,6 +3,7 @@ const router         = express.Router();
 
 const { signup, signin }   = require('../user/authentication');
 const { chagneProfileImage, modifyUserInfo, changePassword }  = require('../user/updateuser');
+const test = require('../user/test');
 
 router.post('/signup', signup);
 router.post('/signin', signin);
