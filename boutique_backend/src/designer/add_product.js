@@ -4,7 +4,7 @@ const mysql  = require('../database/connection');
 let fileName="";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "C:\\Node Js\\SIMATS\\boutique\\boutique_backend\\src\\uploads\\product_images\\");
+    cb(null, "..//boutique_backend//src//uploads//product_images//");
   },
   filename: (req, file, cb) => {
       fileName = Date.now() + '-' + file.originalname;
@@ -28,7 +28,7 @@ const addProduct = (req, res) => {
         }
 
         if(!Array.isArray(colors) || !Array.isArray(size)) {
-          return res.status(400).send({ status: 400, message: '!Color or Size Value Missing' });
+          return res.status(400).send({ status: 400, message: '!Color or Size Value Missing',size:size,color:colors });
         }
         
         if(size.length==0 || colors.length==0) {
