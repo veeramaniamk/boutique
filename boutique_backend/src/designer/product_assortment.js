@@ -78,7 +78,7 @@ const deleteAssortment = (req, res) => {
 
         if(result.affectedRows!=0) {
             return res.status(200).send({status: 200, message: 'Category Deleted Successfully'});
-        }else {
+        } else {
             return res.status(401).send({status:401, message:'Category Not Found'});
         }
 
@@ -88,7 +88,21 @@ const deleteAssortment = (req, res) => {
 
 const getAssortment = (req, res) => {
 
-    const query = `select id, category_name, gender_category from product_assortment`;
+    const gender_id = req.query.gender_id;
+
+    let query = ``;
+
+    if(!gender_id) {
+        query = `SELECT assort.id as assortment_id, assort.category_name, assort.gender_category as gender_id, gender.category_name as gender FROM product_assortment assort inner join gender_category gender on gender.category_id = assort.gender_category and assort.product_assortment_active=true and gender.category_active=true`;
+    } else {
+        const id = Number.parseInt(gender_id)
+
+        if(!Number.isInteger(id)) {
+            return res.status(400).send({ status: 400, message: 'ID Must Be Number '});
+        }
+
+        query = `SELECT assort.id as assortment_id, assort.category_name, assort.gender_category as gender_id, gender.category_name as gender FROM product_assortment assort inner join gender_category gender on gender.category_id = assort.gender_category and assort.gender_category = ${id} and assort.product_assortment_active=true and gender.category_active=true`;
+    }
 
     mysql.query(query, (err, result)=>{
 
@@ -99,10 +113,10 @@ const getAssortment = (req, res) => {
         } 
 
         if(result.length==0){
-            return res.status(500).send({status:500, message: 'Assortment Not Found'});
+            return res.status(404).send({status:500, message: 'Assortment Not Found'});
         }
 
-        return res.status(200).send({status: 200, message:'Assortment Selected Successfully', data:result});
+        return res.status(200).send({status: 200, message:'Success', data:result});
 
     })
 
