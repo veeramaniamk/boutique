@@ -13,7 +13,8 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res)=>{res.send("BOUTIQUE")});
 
-app.use('/asserts',express.static('C:\\Node Js\\SIMATS\\boutique\\src\\uploads\\profile\\'));
+app.use('/asserts', express.static('C:\\Node Js\\SIMATS\\boutique\\src\\uploads\\profile\\'));
+app.use('/images', express.static('C:\\Node Js\\SIMATS\\boutique\\src\\uploads\\product_images\\'));
 
 app.use('/user', user);
 app.use('/admin', admin);

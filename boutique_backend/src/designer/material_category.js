@@ -97,14 +97,20 @@ const getCategory = (req, res) => {
     let query = ``;
 
     if(!gender_id) {
-        query = `select id, cloth_name, gender_category from material_category where product_active=true`;
+        query = `SELECT material.id as material_id, material.cloth_name, material.gender_category as gender_id, gender.category_name as gender FROM material_category material inner join gender_category gender on gender.category_id = material.gender_category and material.product_active=true and gender.category_active=true`;
     } else {
 
-        if(Number.isInteger(gender_id)) {
-            return res.status(400).send({ status: 400, message: 'ID Must Be Number' });
+        const id = Number.parseInt(gender_id)
+
+        if(!Number.isInteger(id)) {
+            return res.status(400).send({ status: 400, message: 'ID Must Be Number '});
         }
 
-        query = `select id, cloth_name, gender_category from material_category where product_active=true and gender_category=${gender_id}`;
+        query = `SELECT material.id as material_id, material.cloth_name, material.gender_category as gender_id, gender.category_name as gender FROM material_category material inner join gender_category gender 
+        on gender.category_id       = material.gender_category 
+        and material.gender_category= ${gender_id}
+        and material.product_active = true 
+        and gender.category_active  = true`;
 
     }
 

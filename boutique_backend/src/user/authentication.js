@@ -2,7 +2,7 @@ const mysql = require('../database/connection');
 
 const { hash, genSalt, compare } = require('bcryptjs');
 
-async function registerUser(req, res) {
+ const registerUser = async (req, res) => {
 
     const body = req.body;
 
@@ -33,7 +33,7 @@ async function registerUser(req, res) {
 
 }
 
-function signup(req, res) {
+const signup = (req, res) => {
 
     const body = req.body;
 

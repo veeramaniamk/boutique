@@ -7,6 +7,7 @@ const material_category = require('../designer/material_category');
 const product           = require('../designer/add_product');
 const gender            = require('../designer/gender');
 const productAssortment = require('../designer/product_assortment');
+const get_product       = require('../designer/get_product');
 
 // Next Add the function here
 //Material Category
@@ -33,9 +34,10 @@ router.post('/update_assortment', productAssortment.updateAssortment);
 router.post('/delete_assortment', productAssortment.deleteAssortment);
 router.post('/read_assortment', productAssortment.getAssortment);
 
-
-
 //Add Product
 router.post('/add_product', product.addProduct);
+router.post('/get_product', get_product.get_product);
+router.post('/get_product_images', get_product.get_product_images);
+
 
 module.exports = router;
