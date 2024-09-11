@@ -4,7 +4,8 @@ const router            = express.Router();
 //First Call the file here 
 const material_category = require('../designer/material_category');
 // const dress_category    = require('../designer/dress_category');
-const product           = require('../designer/add_product');
+// const product           = require('../designer/add_product');
+const product           = require('../designer/add_product_test');
 const gender            = require('../designer/gender');
 const productAssortment = require('../designer/product_assortment');
 const get_product       = require('../designer/get_product');
@@ -38,6 +39,7 @@ router.post('/read_assortment', productAssortment.getAssortment);
 router.post('/add_product', product.addProduct);
 router.post('/get_product', get_product.get_product);
 router.post('/get_product_images', get_product.get_product_images);
+router.get('/test_get_product', product.getProduct);
 
 
 module.exports = router;

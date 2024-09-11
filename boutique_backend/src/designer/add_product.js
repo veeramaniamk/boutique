@@ -58,12 +58,15 @@ const addProduct = (req, res) => {
             return res.status(400).json({ status: 400, message: 'Content or image(s) missing' });
         }
 
+        console.log([designer_id, product_name, product_description, gender_category, material_id,
+          product_assortment_id, embellishment, trim_border, sleeves, pattern, quantity, amount])
+
         const addProductQuery = `select add_product(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) as product_id`;
         
         mysql.query(addProductQuery, [designer_id, product_name, product_description, gender_category, material_id,
            product_assortment_id, embellishment, trim_border, sleeves, pattern, quantity, amount], (err, result) => {
             
-          if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
+          if(err) return res.status(500).json({ status: 500, message: err.message, err:err});
           
           const product_id = result[0].product_id;
           if(product_id == 0) {
@@ -82,7 +85,7 @@ const addProduct = (req, res) => {
           let productImages = `INSERT INTO product_images(product_id, product_image) values `+ imageValue;
           // console.log(productImages);
           mysql.query(productImages, (err, result) => {
-            if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
+            if(err) return res.status(500).json({ status: 500, message: 'Sql Error', err:err});
           })
 
           let colorValue = ``;
@@ -96,7 +99,7 @@ const addProduct = (req, res) => {
 
           let productColors = `INSERT INTO product_colors(product_id, color_name) VALUES ` + colorValue;
           mysql.query(productColors, (err, result) => {
-            if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
+            if(err) return res.status(500).json({ status: 500, message: 'Sql Error', err:err});
           })
 
           let sizeValue = ``;
@@ -110,7 +113,7 @@ const addProduct = (req, res) => {
 
           let productSize = `INSERT INTO product_size( product_id, size, quantity, amount) VALUES ` + sizeValue;
           mysql.query(productSize, (err, result) => {
-            if(err) return res.status(500).json({ status: 200, message: 'Sql Error', err:err});
+            if(err) return res.status(500).json({ status: 500, message: err.message, err:err});
           })
 
           return res.status(200).json({ status: 200, message: 'Submitted successfully'});
