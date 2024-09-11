@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Dropdown } from 'react-bootstrap';
 
 function Navbar() {
   return (
@@ -22,11 +21,14 @@ function Navbar() {
           <Link className="nav-con anch" to="/designerorder">Orders</Link>
           </li>
           <li>
-          <Link className="nav-con anch" to="/profile">Profile</Link>
+          <Link className="nav-con anch" to="/addproductcategories">Addcategories</Link>
           </li>
           <li>
-          <Link className="nav-con anch" to="/profile">Product Lists</Link>
+          <Link className="nav-con anch" to="/profile">Profile</Link>
           </li>
+          {/* <li>
+          <Link className="nav-con anch" to="/profile">Product Lists</Link>
+          </li> */}
         </ul>
       </nav>
     </>

@@ -19,5 +19,5 @@ app.use('/user', user);
 app.use('/admin', admin);
 app.use('/designer', designer);
 
-const PORT = process.env.PORT;
+const PORT = 1000;
 app.listen(PORT, ()=>{console.log(`http://localhost:${PORT}/`)});

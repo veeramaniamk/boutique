@@ -10,11 +10,12 @@ import Register from "./components/Register";
 import UserHome from './User/Userhome.jsx';
 import Usermain from './User/Usermain.jsx';
 import UserOrders from './User/Userorders.jsx';
-import DesignerHome from './designer/Designerhome.jsx';
+import DesignerHome from './designer/designerhome.jsx';
 import DesignerOrder from './designer/Designerorders.jsx';
 import ProfilePage from './components/profilepage.jsx';
 import AdminDashboard from './admin/admindashboard.jsx';
 import Userproductview from './User/Userproductview.jsx';
+import Addingproductlistsdropdown from './designer/Addingproductcategories.jsx';
 
 function App() {
   const [userRole, setUserRole] = useState(null);
@@ -71,6 +72,7 @@ function App() {
           <>
             <Route path="/designerhome" element={<DesignerHome />} />
             <Route path="/designerorder" element={<DesignerOrder />} />
+            <Route path="/addproductcategories" element={<Addingproductlistsdropdown />} />
           </>
         )}
 

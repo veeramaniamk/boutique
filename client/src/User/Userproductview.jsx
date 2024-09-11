@@ -1,8 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import image18 from '../boutique-imag/image 18.png';
+import React, { useState} from 'react';
 import image8 from '../boutique-imag/image 8.png';
-import image7 from '../boutique-imag/image 7.png';
-import image4 from '../boutique-imag/image 4.png';
 
 
 const Userproductview = () =>{

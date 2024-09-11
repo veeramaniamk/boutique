@@ -15,9 +15,9 @@ const Usermain = () => {
 //   const [kidsDesign, setkidsDesign] = useState('');
 //   const [kidsMaterial, setkidsMaterial] = useState('');
 
-const [quantity, setQuantity] = useState(0);
-const [color, setColor] = useState('');
-const [size, setSize] = useState('');
+// const [quantity, setQuantity] = useState(0);
+// const [color, setColor] = useState('');
+// const [size, setSize] = useState('');
 // const [price] = useState(150);
 const canvasRef = useRef(null);
 const contextRef = useRef(null);
@@ -75,17 +75,17 @@ const [strokeWidth] = useState(2);
     setStartIndex(-1);
   };
 
-  const handleSizeChange = (event) => {
-    setSize(event.target.value);
-  };
+  // const handleSizeChange = (event) => {
+  //   setSize(event.target.value);
+  // };
 
-  const handleQuantityChange = (change) => {
-    setQuantity(prev => Math.max(0, prev + change));
-  };
+  // const handleQuantityChange = (change) => {
+  //   setQuantity(prev => Math.max(0, prev + change));
+  // };
 
-  const handleColorChange = (event) => {
-    setColor(event.target.value);
-  };
+  // const handleColorChange = (event) => {
+  //   setColor(event.target.value);
+  // };
 
   useEffect(() => {
     const canvas = canvasRef.current;

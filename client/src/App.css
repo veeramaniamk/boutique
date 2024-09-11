@@ -814,3 +814,57 @@ input[type="file"]::-webkit-file-upload-button {
   color: #FA5CA1;
   border:  1px solid    #FA5CA1 ;
 } 
+
+.add-sec-produ{
+  margin-top: 50px;
+}
+
+/* Style for normal tabs */
+.categ-tab {
+  background-color: rgb(249, 243, 243);
+  width: 225px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  color: #000000 !important;
+  text-align: center !important;
+  border-radius: 20px !important;
+  margin-right: 10px !important;
+}
+
+/* Style for the active tab */
+.categ-tab.active {
+  background-color: #fa5ca1 !important;
+  width: 225px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  text-align: center !important;
+  border-radius: 20px !important;
+  margin-right: 10px !important;
+}
+
+/* Optional: Hover effect for normal tabs */
+.categ-tab:hover {
+  background-color: #ff70b5;
+}
+
+.add-caegorires{
+  align-items: end;
+}
+
+.adscategory{
+  background-color: #ffffff;
+    border: none;
+    color: #FA5CA1;
+    font-weight: 700;
+}
+
+.goriesadd{
+  text-align: end;
+}
+
+.canva-categori{
+  height: 62%;
+  margin-top: 50px;
+  border-radius: 8px;
+}
