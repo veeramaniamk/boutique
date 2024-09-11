@@ -64,9 +64,7 @@ const test = (req, res) => {
         if (err) {
            return res.status(500).json({ status: 200, message: err.message});
         }
-
-
-       
+        
     });
 }
 
