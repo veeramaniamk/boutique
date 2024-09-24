@@ -15,9 +15,7 @@ const connection = mysql.createPool(config);
 
 connection.getConnection(async (err, con) => {
     if(err) {
-        console.log('Mysql Connection Error -> '+err);
-    } else if(con.state === 'disconnected') {
-        console.log(`Database connection failed. Check that its running and that your configuration is correct`);
+        console.log('Connection Error -> '+err);
     } else {
         console.log('Mysql '+con.state);
     } 
