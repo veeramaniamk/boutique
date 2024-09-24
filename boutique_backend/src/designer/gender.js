@@ -92,7 +92,7 @@ const deleteGender = (req, res) => {
 
 const getGender = (req, res) => {
 
-    const query = `select category_id, category_name from gender_category`;
+    const query = `select category_id, category_name from gender_category where category_active=True`;
 
     mysql.query(query, (err, result)=>{
 
