@@ -38,7 +38,8 @@ router.post('/read_assortment', productAssortment.getAssortment);
 //Add Product
 router.post('/add_product', product.addProduct);
 router.post('/get_product', get_product.get_product);
-router.post('/get_product_images', get_product.get_product_images);
+router.post('/get_single_pro', get_product.get_single_product);
+// router.post('/get_product_images', get_product.get_product_images);
 router.get('/test_get_product', product.getProduct);
 
 
